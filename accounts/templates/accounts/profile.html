@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+
+
+{% block content %}
+
+<div class="col my-3">
+    <h5>Here's a list of all the registered users.</h5><br>
+</div>
+
+<form method="POST" action="{% url 'accounts:delete' %}" id="delete_form"> {% csrf_token %}
+<div class="row">
+    <div class="col">
+        User:
+<select name="delete_option" form="delete_form" >
+    {% for object in object_list %}
+        <option value="{{ object.id }}">{{ object.user_id }}</option>
+    {% endfor %}
+</select>
+    </div>
+    <div class="col-8">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+</div>
+</form>
+
+{% endblock %}
